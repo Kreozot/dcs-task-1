@@ -4,6 +4,7 @@ import useInterval from 'common/hooks/useInterval';
 import MainControls from 'components/MainControls';
 import Timer from 'components/Timer';
 import SpeedController from 'components/SpeedController';
+import ToggleButton from 'components/ToggleButton';
 import { BASE_TIMEOUT } from 'common/const';
 
 import './App.css';
@@ -24,13 +25,11 @@ function App() {
 
   useInterval(tick, isPaused ? null : speed);
 
-  useEffect(() => {
-    setIsPaused(false);
-    setSeconds(initialSeconds);
-  }, [initialSeconds]);
-
   const handleStart = useCallback((value) => {
-    setInitialSeconds(value * 60);
+    const seconds = value * 60;
+    setInitialSeconds(seconds);
+    setSeconds(seconds);
+    setIsPaused(false);
   }, []);
 
   return (
@@ -38,6 +37,7 @@ function App() {
       <MainControls onStart={ handleStart }/>
       <Timer seconds={ seconds } initialSeconds={ initialSeconds }/>
       <SpeedController speed={ speed } onSpeedChange={ setSpeed }/>
+      <ToggleButton isPaused={ isPaused } setIsPaused={ setIsPaused } disabled={ !seconds }/>
     </div>
   );
 }
