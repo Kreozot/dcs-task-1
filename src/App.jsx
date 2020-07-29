@@ -15,8 +15,11 @@ function App() {
   const [isPaused, setIsPaused] = useState(true);
 
   const tick = useCallback(() => {
-    setIsPaused(seconds === 0);
-    setSeconds(seconds - 1);
+    if (seconds === 0) {
+      setIsPaused(true);
+    } else {
+      setSeconds(seconds - 1);
+    }
   }, [seconds]);
 
   useInterval(tick, isPaused ? null : speed);

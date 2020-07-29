@@ -21,6 +21,7 @@ export default function SpeedButton(props) {
   return (
       <Button
         variant={ variant }
+        color="primary"
         onClick={ handleClick }
       >
         { title }

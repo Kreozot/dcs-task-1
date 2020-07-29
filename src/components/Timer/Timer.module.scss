@@ -1,0 +1,29 @@
+@keyframes blink {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}
+
+.message {
+  font-size: 1.1em;
+}
+
+.messageAttention {
+  @extend .message;
+
+  color: red;
+}
+
+.messageAlarm {
+  @extend .messageAttention;
+
+  animation: blink 0.7s cubic-bezier(1.0, 0, 0, 1.0) infinite both;
+}
+
+.time {
+  font-size: 5em;
+  font-weight: bold;
+}
