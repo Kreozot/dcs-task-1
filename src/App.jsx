@@ -4,13 +4,14 @@ import useInterval from 'common/hooks/useInterval';
 import MainControls from 'components/MainControls';
 import Timer from 'components/Timer';
 import SpeedController from 'components/SpeedController';
+import { BASE_TIMEOUT } from 'common/const';
 
 import './App.css';
 
 function App() {
   const [seconds, setSeconds] = useState(0);
   const [initialSeconds, setInitialSeconds] = useState(0);
-  const [speed, setSpeed] = useState(1000);
+  const [speed, setSpeed] = useState(BASE_TIMEOUT);
   const [isPaused, setIsPaused] = useState(true);
 
   const tick = useCallback(() => {
