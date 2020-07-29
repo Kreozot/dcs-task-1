@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import useInterval from 'common/hooks/useInterval';
 import MainControls from 'components/MainControls';
@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
   const [seconds, setSeconds] = useState(0);
+  const [initialSeconds, setInitialSeconds] = useState(0);
   const [speed, setSpeed] = useState(1000);
   const [isPaused, setIsPaused] = useState(true);
 
@@ -19,16 +20,19 @@ function App() {
 
   useInterval(tick, isPaused ? null : speed);
 
-  const handleStart = useCallback((value) => {
+  useEffect(() => {
     setIsPaused(false);
-    setSeconds(value * 60);
+    setSeconds(initialSeconds);
+  }, [initialSeconds]);
+
+  const handleStart = useCallback((value) => {
+    setInitialSeconds(value * 60);
   }, []);
 
   return (
     <div className="App">
-      { console.log(speed, isPaused, seconds) }
       <MainControls onStart={ handleStart }/>
-      <Timer seconds={ seconds }/>
+      <Timer seconds={ seconds } initialSeconds={ initialSeconds }/>
       <SpeedController speed={ speed } onSpeedChange={ setSpeed }/>
     </div>
   );

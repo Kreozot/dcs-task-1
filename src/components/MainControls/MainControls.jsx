@@ -7,7 +7,7 @@ import styles from './MainControls.module.scss';
 export default function MainControls(props) {
   const { onStart } = props;
 
-  const [minutes, setMinutes] = useState();
+  const [minutes, setMinutes] = useState('');
 
   const handleMinutesChange = useCallback(({ target: { value } }) => {
     const intValue = parseInt(value);
@@ -21,6 +21,7 @@ export default function MainControls(props) {
   return (
     <form className={ styles.form }>
       <TextField
+        id="minutes"
         label="Minutes"
         value={ minutes }
         onChange={ handleMinutesChange }
