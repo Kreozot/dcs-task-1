@@ -1,5 +1,4 @@
 import React from 'react';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import SpeedButton from './SpeedButton'
 
@@ -9,10 +8,10 @@ export default function SpeedController(props) {
   const { speed, onSpeedChange } = props;
 
   return (
-    <ButtonGroup color="primary">
+    <div className={ styles.buttons }>
       <SpeedButton speed={ speed } multiplier={ 1 } onSpeedChange={ onSpeedChange }/>
       <SpeedButton speed={ speed } multiplier={ 1.5 } onSpeedChange={ onSpeedChange }/>
       <SpeedButton speed={ speed } multiplier={ 2 } onSpeedChange={ onSpeedChange }/>
-    </ButtonGroup>
+    </div>
   );
 }

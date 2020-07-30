@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import styles from './MainControls.module.scss';
+
+const MINUTES_IN_DAY = 60 * 24;
 
 export default function MainControls(props) {
   const { onStart } = props;
@@ -11,7 +12,10 @@ export default function MainControls(props) {
   const [minutes, setMinutes] = useState('');
 
   const handleMinutesChange = useCallback(({ target: { value } }) => {
-    const intValue = parseInt(value);
+    let intValue = parseInt(value);
+    if (intValue > MINUTES_IN_DAY) {
+      intValue = MINUTES_IN_DAY;
+    }
     setMinutes(isNaN(intValue) ? '' : intValue);
   }, []);
 
