@@ -7,7 +7,7 @@ export default function SpeedButton(props) {
   const { speed, multiplier, onSpeedChange } = props;
 
   const variant = useMemo(() => {
-    return speed === BASE_TIMEOUT / multiplier ? 'contained' : null;
+    return speed === BASE_TIMEOUT / multiplier ? 'contained' : 'outlined';
   }, [multiplier, speed]);
 
   const title = useMemo(() => {

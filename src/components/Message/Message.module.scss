@@ -8,6 +8,8 @@
 }
 
 .message {
+  display: flex;
+  align-items: center;
   font-size: 1.1em;
   height: 2em;
 }
@@ -22,9 +24,4 @@
   @extend .messageAttention;
 
   animation: blink 0.7s cubic-bezier(1.0, 0, 0, 1.0) infinite both;
-}
-
-.time {
-  font-size: 5em;
-  font-weight: bold;
 }

@@ -1,16 +1,17 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import useInterval from 'common/hooks/useInterval';
 import MainControls from 'components/MainControls';
+import Message from 'components/Message';
 import Timer from 'components/Timer';
 import SpeedController from 'components/SpeedController';
 import ToggleButton from 'components/ToggleButton';
 import { BASE_TIMEOUT } from 'common/const';
 
-import './App.css';
+import styles from './App.module.scss';
 
 function App() {
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(null);
   const [initialSeconds, setInitialSeconds] = useState(0);
   const [speed, setSpeed] = useState(BASE_TIMEOUT);
   const [isPaused, setIsPaused] = useState(true);
@@ -33,11 +34,14 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={ styles.container }>
       <MainControls onStart={ handleStart }/>
-      <Timer seconds={ seconds } initialSeconds={ initialSeconds }/>
-      <SpeedController speed={ speed } onSpeedChange={ setSpeed }/>
-      <ToggleButton isPaused={ isPaused } setIsPaused={ setIsPaused } disabled={ !seconds }/>
+      <Message seconds={ seconds } initialSeconds={ initialSeconds }/>
+      <Timer seconds={ seconds }/>
+      <div className={ styles.speedBlock }>
+        <SpeedController speed={ speed } onSpeedChange={ setSpeed }/>
+        <ToggleButton isPaused={ isPaused } setIsPaused={ setIsPaused } disabled={ !seconds }/>
+      </div>
     </div>
   );
 }

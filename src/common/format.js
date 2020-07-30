@@ -5,7 +5,7 @@ export function formatTime(seconds) {
   const dateTime = set(new Date(), {
     hours: 0,
     minutes: 0,
-    seconds: seconds,
+    seconds: seconds || 0,
   });
   return format(dateTime, 'mm:ss');
 }

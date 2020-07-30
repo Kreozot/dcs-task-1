@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import styles from './MainControls.module.scss';
 
@@ -14,12 +15,13 @@ export default function MainControls(props) {
     setMinutes(isNaN(intValue) ? '' : intValue);
   }, []);
 
-  const handleStartClick = useCallback(() => {
+  const handleStart = useCallback((event) => {
+    event.preventDefault();
     onStart(minutes);
   }, [onStart, minutes]);
 
   return (
-    <form className={ styles.form }>
+    <form className={ styles.form } onSubmit={ handleStart }>
       <TextField
         id="minutes"
         label="Minutes"
@@ -29,7 +31,7 @@ export default function MainControls(props) {
       <Button
         variant="contained"
         color="primary"
-        onClick={ handleStartClick }
+        type="submit"
       >
         Start
       </Button>
