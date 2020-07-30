@@ -2,6 +2,10 @@
 
 ![App screenshot](/screenshot.png?raw=true)
 
+https://timer.sharov.dev/
+
+## Development info
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
